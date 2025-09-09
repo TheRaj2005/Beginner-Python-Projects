@@ -1,0 +1,24 @@
+seeText = input("Would you like to see the text?")
+if seeText == 'yes':
+    f = open("paragraphs.txt", "r", encoding="utf-8")
+    lines = f.readlines()
+for i in range(len(lines)):
+    print(str(i+1) + ": " + lines[i])
+
+    keepEditing = True
+while keepEditing == True:
+
+    editText = input("Would you like to edit the text?")
+    if editText != 'yes':
+        keepEditing = False
+        break
+    elif editText == 'yes':
+        lineNumber = int(input("Which line do you wish to edit?"))
+        newText = input("Enter the new text:")
+        lines[lineNumber - 1] = newText
+
+    f = open("paragraphs.txt", "w", encoding="utf-8")
+    f.writelines(lines)
+
+    print("Text edited successfully")
+    f.close()
