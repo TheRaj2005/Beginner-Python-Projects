@@ -1,6 +1,12 @@
 # Python-Projects
 This is a repo of my Python Projects as I learn Python for Data Analysis. 
 
+Project 1: Journal App
+
+Deliverables:
+1. Ability to enter an entry onto a .txt file
+2. Ability to view one entry, a range of entries, or all entries
+3. Ability to see how many lines have been written
 
 
 Project 2: Word Counter
