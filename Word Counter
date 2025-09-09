@@ -1,0 +1,104 @@
+f = open("paragraphs.txt", "r" , encoding="utf-8")
+currLines = f.readlines()
+text = " ".join(currLines)
+print("There are " + str(len(currLines)) + " lines in the paragraphs.")
+
+emptyLines = []
+
+i = 0
+for currLine in currLines:
+    i += 1
+    if currLine.strip() == "":
+        emptyLines.append(i)
+    else:
+        continue
+print("There are " + str(len(emptyLines)) + " empty lines in the paragraphs.")
+print("The blank lines are:")
+for j in range(len(emptyLines)):
+    print(emptyLines[j])
+
+words = text.split()
+newWords = []
+for word in words:
+    lowered = word.lower()
+    newWords.append(lowered)
+
+words = newWords
+
+cleanwords = []
+for word in words:
+    cleanword = word.strip(".,!?;:'\"()")
+    cleanwords.append(cleanword)
+
+words = cleanwords
+
+counts = {}
+
+for word in words:
+    if word in counts:
+        counts[word] += 1
+    else:
+        counts[word] = 1
+
+print("There are " + str(len(words)) + " words in the .txt file")
+
+sortby = int(input("Sort by alphabetical order or frequency? \nEnter 0 for alphabetical order, 1 for frequency."))
+
+numTopEntries = None
+
+if sortby == 0:
+    direction1 = input("Enter 'forward' to sort from A to Z, or 'reverse' to sort from Z to A.")
+    if direction1 == "forward":
+        rev = False
+    elif direction1 == "reverse":
+        rev = True
+elif sortby == 1:
+    direction2 = input("Enter 'decreasing' to sort by decreasing or 'increasing' to sort by increasing.")
+    if direction2 == "increasing":
+        rev = False
+    elif direction2 == "decreasing":
+        topEntries = input("Would you like to only see the top entries")
+        if topEntries == "yes":
+            numTopEntries = int(input("How many most common words would you like to see?"))
+        rev = True
+
+def get_count(item):
+    return item[sortby]
+
+pairs = list(counts.items())
+pairs.sort(key=get_count, reverse = rev)
+sorted_counts = dict(pairs)
+
+pairs = list(sorted_counts.items())
+
+i = 0
+for pair in pairs:
+    word = pair[0]
+    freq = pair[1]
+
+    output = str(word) + ": " + str(freq)
+    print(output)
+
+    i += 1
+
+    if i % 10 == 0:
+        print("")
+    if numTopEntries is not None and i > numTopEntries:
+            break
+
+specificWord = input("Would you like to see a specific word?")
+if specificWord == "yes":
+    inputWord = input("Which word (lowercase) would you like to see the frequency of?")
+
+    frequency = counts[inputWord]
+    print("'" + inputWord + "'" + " appears " + str(frequency) + " times")
+
+
+specificLetter = input("Would you like to see words with a specific letter?")
+if specificLetter == "yes":
+    letter = input("Which starting letter would you like to see words with?")
+
+    for word in counts:
+        if word.startswith(letter):
+            frequency = counts[word]
+            print("'" + word + "'" + " appears " + str(frequency) + " times")
