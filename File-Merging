@@ -1,0 +1,24 @@
+numFilesToMerger = int(input("How many files do you want to merger?"))
+
+filesToMerger = []
+
+fileDestinationName = input("What would you want the destination file name to be?")
+
+file_path = fileDestinationName
+
+for i in range(numFilesToMerger):
+    filesToMerger.append(input("Enter file name: "))
+
+f = open(file_path, "w")
+f.write("")
+f.close()
+
+outfile = open(fileDestinationName, "w", encoding="utf-8")
+
+for i in range(numFilesToMerger):
+    infile = open(filesToMerger[i], "r", encoding="utf-8")
+    contents = infile.read()
+    outfile.write(contents + "\n")
+    outfile.write("\n")
+    infile.close()
+outfile.close()
