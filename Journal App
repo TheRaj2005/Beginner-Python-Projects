@@ -1,0 +1,61 @@
+from datetime import datetime
+
+f = open("journal.txt", "r", encoding="utf-8")
+currLines = f.readlines()
+f.close()
+
+
+print("This is a journal entry tool.")
+print("Current lines filled:", len(currLines))
+print("Enter 0 to skip to viewing entries.")
+
+numEntries = int(input("How many journal entries do you have to enter?"))
+
+f = open("journal.txt", "a", encoding="utf-8")
+for i in range(numEntries):
+    Response = input("What is your journal entry? ")
+    timestamp = datetime.now().strftime("[%Y-%m-%d %H:%M]")
+    entry = Response + " " + timestamp + "\n"
+    f.write(entry)
+f.close()
+
+ViewInput = input("Would you like to view current journal entries?")
+
+continueEntries = True
+while continueEntries:
+
+    if ViewInput == "yes":
+        f = open("journal.txt", "r", encoding="utf-8")
+        currLines = f.readlines()
+        print("There are " + str(len(currLines)) + " entries in the journal.")
+        print("Would you like to see a specific entry, a range of entries, or all entries?")
+        outputType = input("Input 'specific' to view a single entry, 'range' to view a range of entries, 'all' to view all entries.")
+
+        if outputType == "specific":
+            entryNum = int(input("Which entry number?: "))
+            print(currLines[entryNum - 1])
+
+        elif outputType == "range":
+            lowBoundry = int(input("Please enter the low boundry"))
+            highBoundry = int(input("Please enter the high boundry"))
+
+            i = lowBoundry - 1
+
+            while i >= lowBoundry - 1 and i <= highBoundry - 1:
+                print(currLines[i])
+                i += 1
+
+        elif outputType == "all":
+            i = 0
+
+            while i < len(currLines):
+                print(currLines[i])
+                i += 1
+
+        f.close()
+        viewEntries = input("Would you like to continue viewing entries?")
+        if viewEntries != "yes":
+            continueEntries = False
+
+    elif ViewInput != "yes":
+        print("Finishing program")
