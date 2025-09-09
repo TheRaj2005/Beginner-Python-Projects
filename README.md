@@ -1,13 +1,21 @@
 # Python-Projects
 This is a repo of my Python Projects as I learn Python for Data Analysis. 
 
-Project 1: Journal App
+Project 1: 
+1a.
+Journal App
 
 Deliverables:
 1. Ability to enter an entry onto a .txt file
 2. Ability to view one entry, a range of entries, or all entries
 3. Ability to see how many lines have been written
 
+1b.
+Line Editor
+
+Deliverables:
+1. The ability to view the text
+2. The ability to change a line in the text
 
 Project 2: Word Counter
 
@@ -17,3 +25,7 @@ Deliverables:
 3. Each word in alphabetical order
 4. The number of lines in the file (and empty lines)
 
+Project 3: File Merging
+
+Deliverables: 
+1. The ability to merge the contents of multiple .txt files into one .txt file
