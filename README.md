@@ -1,5 +1,6 @@
 # Python-Projects
 This is a repo of my Python Projects as I learn Python for Data Analysis. 
+At this stage I am learning basic file Input Output mechanics.
 
 Project 1: 
 1a.
